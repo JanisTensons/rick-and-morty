@@ -18,8 +18,11 @@ class CardApiClient
     public function getCardsContents(): CardsCollection
     {
         $characterIds = [];
-        for ($i = 0; $i < 18; $i++) {
-            $characterIds[] = rand(1, 826);
+        while (count($characterIds) < 36) {
+            $characterId = mt_rand(1, 826);
+            if (!in_array($characterId, $characterIds)) {
+                $characterIds[] = $characterId;
+            }
         }
         $queryString = implode(',', $characterIds);
 

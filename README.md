@@ -11,6 +11,6 @@
 
 #### How to use an App
 
-- Press `Click here` to see 18 random cards
+- Press `Click here` to see 36 random cards
 
 #### Enjoy your Cards 👍🏻
