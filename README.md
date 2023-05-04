@@ -6,7 +6,7 @@
 
 - Clone project from GitHub
 - Run `composer install`
-- Run `php -S localhost:8000`
+- Run `php -S localhost:8000 public/index.php`
 - Click on link
 
 #### How to use an App
