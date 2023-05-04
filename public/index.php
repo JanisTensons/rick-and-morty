@@ -5,7 +5,7 @@ use App\Models\Card;
 use App\Controllers\CardsController;
 use App\View;
 
-require_once 'vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
 $loader = new \Twig\Loader\FilesystemLoader('app/Views');
 $twig = new \Twig\Environment($loader);

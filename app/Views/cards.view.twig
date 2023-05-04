@@ -4,8 +4,38 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cards</title>
-    <link rel="stylesheet" href="app/Views/styles.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            background: #f5f6f7;
+        }
+
+        .header {
+            text-align: center;
+            font-family: "Georgia", serif;
+            font-size: 30px;
+            padding: 32px;
+            background-color: #0a0a23;
+            color: #fff;
+            border-bottom: 4px solid #fdb347;
+            margin-bottom: 30px;
+        }
+
+        .gallery img {
+            width: 100%;
+            max-width: 250px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+    </style>
 </head>
 <body>
 <header class="header">
@@ -17,8 +47,8 @@
             <div><img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
                       src="{{ card.getUrl() }}" alt="{{ card.getName() }}"></div>
             <div>
-                <h4 class="ml-5 font-bold">{{ card.getName() }}</h4>
-                <p class="ml-5 mb-2 text-sm text-gray-900 dark:text-white">
+                <h5 class="ml-5 text-lg font-bold">{{ card.getName() }}</h5>
+                <p class="ml-5 mb-2 text-md text-gray-900 dark:text-white">
                     {% set status = (card.getStatus() == 'Alive') ? 'green' : 'red' %}
                     <span style="color: {{ status }};">&#x25cf;</span> {{ card.getStatus() }} - {{ card.getSpecies() }}
                 </p>
