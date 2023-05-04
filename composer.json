@@ -1,0 +1,19 @@
+{
+  "name": "janistensons/rick-and-morty",
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Janis Tensons",
+      "email": "jtensons@gmail.com"
+    }
+  ],
+  "require": {
+    "guzzlehttp/guzzle": "^7.5",
+    "twig/twig": "^3.0",
+    "nikic/fast-route": "^1.3"
+  }
+}
