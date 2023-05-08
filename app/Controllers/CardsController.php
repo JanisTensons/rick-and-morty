@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Models\CardApiClient;
+use App\CardApiClient;
 use App\View;
 
 class CardsController

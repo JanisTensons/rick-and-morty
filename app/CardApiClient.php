@@ -1,7 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace App\Models;
+namespace App;
 
+use App\Models\Card;
+use App\Models\CardsCollection;
 use GuzzleHttp\Client;
 
 class CardApiClient
