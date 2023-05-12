@@ -1,6 +1,6 @@
 # The Rick and Morty Cards
 
-![preview](https://user-images.githubusercontent.com/124044988/236327345-efab83f5-2272-4cf7-90ad-200ecc2e6d72.jpg)
+![preview](https://github.com/JanisTensons/rick-and-morty/assets/124044988/8092bc02-992b-4957-b7a9-06c76558c90f)
 
 #### How to install
 

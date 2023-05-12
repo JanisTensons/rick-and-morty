@@ -28,20 +28,20 @@ class ApiClient
         try {
             $page = $_GET['page'] ?? 1;
 
-            if (!Cache::has('characters-' . $page)) {
+            if (!Cache::has('characters-all-' . $page)) {
                 $url = 'https://rickandmortyapi.com/api/character';
                 $url .= '?page=' . $page;
                 $response = $this->client->request('GET', $url);
                 $responseJson = $response->getBody()->getContents();
-                Cache::remember('characters-' . $page, $responseJson);
+                Cache::remember('characters-all-' . $page, $responseJson);
             } else {
-                $responseJson = Cache::get('characters-' . $page);
+                $responseJson = Cache::get('characters-all-' . $page);
             }
             $charactersContents = json_decode($responseJson);
 
             foreach ($charactersContents->results as $character) {
                 $firstEpisodeUrl = $character->episode[0];
-                $firstEpisodeCacheKey = 'episode-' . $character->id;
+                $firstEpisodeCacheKey = 'episode-all-' . $character->id;
 
                 if (!Cache::has($firstEpisodeCacheKey)) {
                     $firstEpisodeJson = $this->client->request('GET', $firstEpisodeUrl)->getBody()->getContents();
@@ -68,24 +68,24 @@ class ApiClient
         }
     }
 
-    public function getByName($searchName): ?CharactersCollection
+    public function getByName($name): ?CharactersCollection
     {
         try {
-            if (!Cache::has('characters-' . $searchName)) {
-                $searchName = $_GET['search'];
-                $url = "https://rickandmortyapi.com/api/character/?name=$searchName";
+            if (!Cache::has('characters-by-name-' . $name)) {
+                $name = $_GET['search'];
+                $url = "https://rickandmortyapi.com/api/character/?name=$name";
                 $response = $this->client->request('GET', $url);
                 $responseJson = $response->getBody()->getContents();
 
-                Cache::remember('characters-' . $searchName, $responseJson);
+                Cache::remember('characters-by-name-' . $name, $responseJson);
             } else {
-                $responseJson = Cache::get('characters-' . $searchName);
+                $responseJson = Cache::get('characters-by-name-' . $name);
             }
             $charactersContents = json_decode($responseJson);
 
             foreach ($charactersContents->results as $character) {
                 $firstEpisodeUrl = $character->episode[0];
-                $firstEpisodeCacheKey = 'episode-' . $character->id;
+                $firstEpisodeCacheKey = 'episode-by-name-' . $character->id;
 
                 if (!Cache::has($firstEpisodeCacheKey)) {
                     $firstEpisodeJson = $this->client->request('GET', $firstEpisodeUrl)->getBody()->getContents();
@@ -134,7 +134,7 @@ class ApiClient
                 $charactersContents = json_decode($characterResponseJson);
 
                 $firstEpisodeUrl = $charactersContents->episode[0];
-                $firstEpisodeCacheKey = 'characters-' . $charactersContents->id;
+                $firstEpisodeCacheKey = 'characters-firstEpisode-' . $charactersContents->id;
 
                 if (!Cache::has($firstEpisodeCacheKey)) {
                     $firstEpisodeJson = $this->client->request('GET', $firstEpisodeUrl)->getBody()->getContents();
@@ -196,28 +196,27 @@ class ApiClient
     public function getByLocation($locationId): ?CharactersCollection
     {
         try {
-            if (!Cache::has('characters-' . $locationId)) {
+            if (!Cache::has('characters-by-location-' . $locationId)) {
                 $locationId = $_GET['id'];
                 $url = "https://rickandmortyapi.com/api/location/$locationId";
                 $response = $this->client->request('GET', $url);
                 $responseJson = $response->getBody()->getContents();
 
-                Cache::remember('characters-' . $locationId, $responseJson);
+                Cache::remember('characters-by-location-' . $locationId, $responseJson);
             } else {
-                $responseJson = Cache::get('characters-' . $locationId);
+                $responseJson = Cache::get('characters-by-location-' . $locationId);
             }
             $charactersContents = json_decode($responseJson);
 
             foreach ($charactersContents->residents as $residentUrl) {
-                //           $characterCacheKey = 'character-' . $residentUrl->id;
 
                 $residentResponse = $this->client->request('GET', $residentUrl);
                 $residentResponseJson = $residentResponse->getBody()->getContents();
                 $residentContents = json_decode($residentResponseJson);
 
                 $episodeUrl = $residentContents->episode[0];
+                $episodeCacheKey = 'episode-by-location-' . $residentContents->id;
 
-                $episodeCacheKey = 'episode-' . $residentContents->id;
                 if (!Cache::has($episodeCacheKey)) {
                     $episodeJson = $this->client->request('GET', $episodeUrl)->getBody()->getContents();
                     Cache::remember($episodeCacheKey, $episodeJson);
@@ -225,10 +224,6 @@ class ApiClient
                     $episodeJson = Cache::get($episodeCacheKey);
                 }
                 $episode = json_decode($episodeJson);
-
-                //        $firstEpisodeResponse = $this->client->request('GET', $firstEpisodeUrl);
-                //        $firstEpisodeResponseJson = $firstEpisodeResponse->getBody()->getContents();
-                //        $firstEpisodeContents = json_decode($firstEpisodeResponseJson);
 
                 $this->charactersCollection->add(new Character(
                     $residentContents->id,
@@ -239,7 +234,6 @@ class ApiClient
                     $residentContents->location->name,
                     new Episode($episode->name)
                 ));
-
             }
             return $this->charactersCollection;
 

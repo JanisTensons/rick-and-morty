@@ -13,6 +13,7 @@ class Router
             $r->addRoute('GET', '/characters-by-episode', 'App\Controllers\CharacterController@getByEpisode');
             $r->addRoute('GET', '/locations', 'App\Controllers\CharacterController@getLocations');
             $r->addRoute('GET', '/characters-by-location', 'App\Controllers\CharacterController@getByLocation');
+            $r->addRoute('GET', '/no-characters', 'App\Controllers\CharacterController@getByName');
         });
 
 // Fetch method and URI from somewhere

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Locations</title>
+    <title>Characters by Name</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
@@ -56,7 +56,7 @@
 </head>
 <body>
 <header class="header">
-    <h1>All Locations</h1>
+    <h1>Characters by Name</h1>
 </header>
 
 <nav class="bg-white border-gray-200 dark:bg-gray-900">
@@ -566,17 +566,9 @@
 </nav>
 
 <div class="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-5">
-    {% for location in locations %}
-        <div>
-            <h5 class="ml-5 text-lg">
-                <a href="characters-by-location?id={{ location.getId() }}">
-                    {{ location.getName() }}
-                </a>
-            </h5>
-        </div>
-    {% endfor %}
+    <p class="ml-5 font-normal text-gray-700 dark:text-gray-400">No characters found!</p>
 </div>
-
+</div>
 </body>
 <footer>
 </footer>

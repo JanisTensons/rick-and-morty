@@ -11,7 +11,7 @@ class CharacterController
     {
         $apiClient = new ApiClient();
         $charactersCollection = $apiClient->getCharactersContents();
-        return new View('index', ['characters' => $charactersCollection->getCollection()]);
+        return new View('index', ['characters' => null]);
     }
 
     public function getCharacters(): View
@@ -21,11 +21,14 @@ class CharacterController
         return new View('characters', ['characters' => $charactersCollection->getCollection()]);
     }
 
-    public function getByName(): View
+    public function getByName(): ?View
     {
         $apiClient = new ApiClient();
         $charactersCollection = $apiClient->getByName("{$_GET["search"]}");
-        return new View('characters-by-name', ['characters' => $charactersCollection->getCollection()]);
+        if (!empty($charactersCollection)) {
+            return new View('characters-by-name', ['characters' => $charactersCollection->getCollection()]);
+        }
+        return new View('no-characters', ['characters' => null]);
     }
 
     public function getByEpisode(): View
