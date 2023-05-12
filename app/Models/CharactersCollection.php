@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
-class CardsCollection
+class CharactersCollection
 {
     private array $collection = [];
 
-    public function add(Card $card): void
+    public function add(Character $character): void
     {
-        $this->collection[] = $card;
+        $this->collection[] = $character;
     }
 
     public function getCollection(): array

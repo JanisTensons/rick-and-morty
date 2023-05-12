@@ -1,4 +1,4 @@
-# The Rick and Morty cards
+# The Rick and Morty Cards
 
 ![preview](https://user-images.githubusercontent.com/124044988/236327345-efab83f5-2272-4cf7-90ad-200ecc2e6d72.jpg)
 
@@ -11,6 +11,6 @@
 
 #### How to use an App
 
-- Press `Click here` to see 36 random cards
+- Press `Click here` to see cards of characters
 
-#### Enjoy your Cards 👍🏻
+#### Enjoy The Rick and Morty Cards 👍🏻

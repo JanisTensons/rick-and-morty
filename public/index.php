@@ -7,4 +7,4 @@ $twig = new \Twig\Environment($loader);
 
 $response = \App\Router::response();
 
-echo $twig->render($response->getTemplate() . '.view.twig', $response->getCardsCollection());
+echo $twig->render($response->getTemplate() . '.view.twig', $response->getCharactersCollection());

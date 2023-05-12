@@ -5,12 +5,12 @@ namespace App;
 class View
 {
     private string $template;
-    private array $cardsCollection;
+    private array $charactersCollection;
 
-    public function __construct(string $template, array $cardsCollection)
+    public function __construct(string $template, array $charactersCollection)
     {
         $this->template = $template;
-        $this->cardsCollection = $cardsCollection;
+        $this->charactersCollection = $charactersCollection;
     }
 
     public function getTemplate(): string
@@ -18,8 +18,8 @@ class View
         return $this->template;
     }
 
-    public function getCardsCollection(): array
+    public function getCharactersCollection(): array
     {
-        return $this->cardsCollection;
+        return $this->charactersCollection;
     }
 }

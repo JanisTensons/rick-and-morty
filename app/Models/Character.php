@@ -2,35 +2,39 @@
 
 namespace App\Models;
 
-use GuzzleHttp\Client;
-
-class Card
+class Character
 {
-    private Client $client;
+    private int $id;
     private string $url;
     private string $name;
     private string $status;
     private string $species;
     private string $location;
-    private string $episode;
+    private Episode $episode;
 
     public function __construct(
+        int $id,
         string $url,
         string $name,
         string $status,
         string $species,
         string $location,
-        string $episode
+        Episode $episode
     )
 
     {
-        $this->client = new Client();
+        $this->id = $id;
         $this->url = $url;
         $this->name = $name;
         $this->status = $status;
         $this->species = $species;
         $this->location = $location;
         $this->episode = $episode;
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
     }
 
     public function getUrl(): string
@@ -58,11 +62,8 @@ class Card
         return $this->location;
     }
 
-    public function getEpisode(): string
+    public function getEpisode(): Episode
     {
-        $url = $this->episode;
-        $response = $this->client->request('GET', $url);
-        $episodeContents = json_decode($response->getBody()->getContents());
-        return $episodeContents->name;
+        return $this->episode;
     }
 }

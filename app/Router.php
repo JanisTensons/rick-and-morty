@@ -7,8 +7,12 @@ class Router
     public static function response(): ?View
     {
         $dispatcher = \FastRoute\simpleDispatcher(function (\FastRoute\RouteCollector $r) {
-            $r->addRoute('GET', '/', 'App\Controllers\CardsController@getIndex');
-            $r->addRoute('GET', '/cards', 'App\Controllers\CardsController@getCards');
+            $r->addRoute('GET', '/', 'App\Controllers\CharacterController@getIndex');
+            $r->addRoute('GET', '/characters', 'App\Controllers\CharacterController@getCharacters');
+            $r->addRoute('GET', '/characters-by-name', 'App\Controllers\CharacterController@getByName');
+            $r->addRoute('GET', '/characters-by-episode', 'App\Controllers\CharacterController@getByEpisode');
+            $r->addRoute('GET', '/locations', 'App\Controllers\CharacterController@getLocations');
+            $r->addRoute('GET', '/characters-by-location', 'App\Controllers\CharacterController@getByLocation');
         });
 
 // Fetch method and URI from somewhere
